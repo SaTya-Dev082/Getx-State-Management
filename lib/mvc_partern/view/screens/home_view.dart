@@ -1,59 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning_getx/mvc_partern/controller/home_controller.dart';
-import 'package:learning_getx/mvc_partern/view/screens/counter_screen.dart';
+import 'package:learning_getx/mvc_partern/view/screens/first_screen.dart';
+import 'package:learning_getx/mvc_partern/view/screens/second_screen.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+  final controller = Get.lazyPut(() => HomeController());
+  final controller1 = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: HomeController(),
-      builder: (controller) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(controller.title),
-            centerTitle: true,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Get.to(CounterScreen());
-                },
-                child: Text("Counter"),
+    return Scaffold(
+      appBar: AppBar(title: Text("Home Screen"), centerTitle: true),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
               ),
-            ],
+              height: 50,
+              onPressed: () {
+                Get.to(() => FirstScreenMVC());
+              },
+              color: Colors.blue,
+              child: Text(
+                "First Screen",
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
+            ),
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                controller.index.toString(),
-                style: TextStyle(fontSize: 30),
-                textAlign: TextAlign.center,
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  height: 50,
-                  onPressed: () {
-                    controller.increaseIndex();
-                  },
-                  color: Colors.green,
-                  child: Text(
-                    "Add",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                ),
+              height: 50,
+              onPressed: () {
+                Get.to(() => SecondScreenMVC());
+              },
+              color: Colors.green,
+              child: Text(
+                "Second Screen",
+                style: TextStyle(fontSize: 18, color: Colors.black),
               ),
-            ],
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
