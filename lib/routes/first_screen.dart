@@ -17,6 +17,9 @@ class FirstScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: MaterialButton(
               height: 50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
               onPressed: () {
                 // Navigator.push(
                 //   context,
