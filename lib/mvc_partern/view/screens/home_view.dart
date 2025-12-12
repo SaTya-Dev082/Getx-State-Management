@@ -4,10 +4,12 @@ import 'package:learning_getx/mvc_partern/controller/home_controller.dart';
 import 'package:learning_getx/mvc_partern/view/screens/first_screen.dart';
 import 'package:learning_getx/mvc_partern/view/screens/second_screen.dart';
 
+import '../../controller/test_getconnect.dart';
+
 class HomeView extends StatelessWidget {
   HomeView({super.key});
-  final controller = Get.lazyPut(() => HomeController());
-  final controller1 = Get.put(HomeController());
+  final controller = Get.lazyPut(() => HomeController(), fenix: true);
+  // final controller1 = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

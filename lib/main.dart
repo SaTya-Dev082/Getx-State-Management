@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learning_getx/mvc_partern/binding/home_binding.dart';
 import 'package:learning_getx/mvc_partern/view/screens/home_view.dart';
 // import 'package:learning_getx/routes/first_screen.dart';
 // import 'package:learning_getx/routes/home_screen.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: const HomeScreen(), // Home Route
       home: HomeView(),
+      initialBinding: HomeBinding(),
     );
   }
 }
