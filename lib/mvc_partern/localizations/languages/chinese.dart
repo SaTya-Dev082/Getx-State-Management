@@ -1,4 +1,4 @@
-Map<String, String> ch = {
+Map<String, String> zh = {
   "language": "中文",
   "home": "首页",
   "setting": "设置",

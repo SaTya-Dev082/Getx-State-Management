@@ -5,5 +5,5 @@ import 'package:learning_getx/mvc_partern/localizations/languages/khmer.dart';
 
 class AppLocalizationController extends Translations {
   @override
-  Map<String, Map<String, String>> get keys => {"en": en, "kh": kh, "ch": ch};
+  Map<String, Map<String, String>> get keys => {"en": en, "kh": kh, "zh": zh};
 }
