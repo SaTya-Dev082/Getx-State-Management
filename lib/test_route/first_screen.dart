@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:learning_getx/test_route/second_screen.dart';
+
+class FirstScreen1 extends StatelessWidget {
+  const FirstScreen1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("First Screen"), centerTitle: true),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              height: 50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              onPressed: () {
+                Get.offAll(SecondScreen2());
+              },
+              color: Colors.green,
+              child: const Text(
+                "Second Screen",
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
