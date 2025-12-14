@@ -15,6 +15,8 @@ import 'package:learning_getx/routes/second_screen.dart';
 import 'package:learning_getx/routes/third_screen.dart';
 import 'package:learning_getx/test_route/home_screen.dart';
 
+import 'mvc_partern/localizations/controllers/setting_language_controller.dart';
+import 'mvc_partern/localizations/views/change_language_view.dart';
 import 'mvc_partern/localizations/views/language_more_view.dart';
 // import 'package:learning_getx/routes/first_screen.dart';
 // import 'package:learning_getx/routes/home_screen.dart';
@@ -23,6 +25,7 @@ import 'mvc_partern/localizations/views/language_more_view.dart';
 
 void main() async {
   await GetStorage.init();
+  Get.put(SettingsController());
   runApp(MyApp());
 }
 
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
               : Locale(box.read("lang")),
       */
       translations: AppLocalizationController(),
-      locale: LocaleService.getLocale(),
+      locale: Get.find<SettingsController>().currentLocale.value,
       fallbackLocale: const Locale("en", "US"),
       initialRoute: "/",
       getPages: [
@@ -64,11 +67,11 @@ class MyApp extends StatelessWidget {
           page: () => ChineseScreen(),
           // transition: Transition.rightToLeft,
         ),
-        // GetPage(
-        //   name: '/changeLanguage',
-        //   page: () => ChangeLanguage(),
-        //   // transition: Transition.rightToLeft,
-        // ),
+        GetPage(
+          name: '/changeLanguage',
+          page: () => ChangeLanguageView(),
+          // transition: Transition.rightToLeft,
+        ),
       ],
 
       // Dependency Injection

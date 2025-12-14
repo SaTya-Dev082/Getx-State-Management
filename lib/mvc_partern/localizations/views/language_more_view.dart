@@ -16,63 +16,63 @@ class LanguageMoreView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              height: 50,
-              onPressed: () {
-                Get.toNamed("/englishScreen");
-                LocaleService.saveLocale(Locale("en"));
-              },
-              color: Colors.green,
-              child: const Text(
-                "English",
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              height: 50,
-              onPressed: () {
-                Get.toNamed("/khmerScreen");
-                LocaleService.saveLocale(Locale("kh"));
-              },
-              color: Colors.blueGrey,
-              child: const Text(
-                "ភាសាខ្មែរ",
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              height: 50,
-              onPressed: () {
-                Get.toNamed("/chineseScreen");
-                LocaleService.saveLocale(Locale("zh"));
-              },
-              color: Colors.red,
-              child: const Text(
-                "中文",
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   child: MaterialButton(
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(25),
+          //     ),
+          //     height: 50,
+          //     onPressed: () {
+          //       Get.toNamed("/englishScreen");
+          //       LocaleService.saveLocale(Locale("en"));
+          //     },
+          //     color: Colors.green,
+          //     child: const Text(
+          //       "English",
+          //       style: TextStyle(fontSize: 18, color: Colors.black),
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   child: MaterialButton(
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(25),
+          //     ),
+          //     height: 50,
+          //     onPressed: () {
+          //       Get.toNamed("/khmerScreen");
+          //       LocaleService.saveLocale(Locale("kh"));
+          //     },
+          //     color: Colors.blueGrey,
+          //     child: const Text(
+          //       "ភាសាខ្មែរ",
+          //       style: TextStyle(fontSize: 18, color: Colors.black),
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   child: MaterialButton(
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(25),
+          //     ),
+          //     height: 50,
+          //     onPressed: () {
+          //       Get.toNamed("/chineseScreen");
+          //       LocaleService.saveLocale(Locale("zh"));
+          //     },
+          //     color: Colors.red,
+          //     child: const Text(
+          //       "中文",
+          //       style: TextStyle(fontSize: 18, color: Colors.black),
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 20),
           Text(
             "home".tr,
             style: TextStyle(fontSize: 30),
@@ -88,7 +88,7 @@ class LanguageMoreView extends StatelessWidget {
               height: 50,
               onPressed: () {
                 Get.toNamed("/changeLanguage");
-                LocaleService.saveLocale(Locale("zh"));
+                // LocaleService.saveLocale(Locale("zh"));
               },
               color: Colors.blue,
               child: Text(
