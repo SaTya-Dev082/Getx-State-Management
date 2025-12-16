@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:learning_getx/getx_sqlite/binding/home_sql_binding.dart';
+import 'package:learning_getx/getx_sqlite/binding/task_binding.dart';
 import 'package:learning_getx/getx_sqlite/controller/sqlite_controller.dart';
 import 'package:learning_getx/mvc_partern/binding/home_binding.dart';
 import 'package:learning_getx/mvc_partern/get_connects/view/home_product_view.dart';
@@ -30,6 +30,7 @@ import 'mvc_partern/localizations/views/language_more_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  TaskBinding().dependencies(); // Need to initialed this.
   // Get.put(SettingsController());
   // await SQLController().createDatabase();
   runApp(MyApp());
@@ -45,15 +46,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       /// Getx SQLite
-      initialRoute: "/",
-      initialBinding: HomeSQLBinding(),
-      getPages: [
-        GetPage(
-          name: "/",
-          page: () => HomeScreenSqlite(),
-          // binding: HomeSQLBinding(),
-        ),
-      ],
+      home: HomeScreenSqlite(),
+      initialBinding: TaskBinding(),
 
       /// GetConnect
       ///

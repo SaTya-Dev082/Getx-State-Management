@@ -18,7 +18,6 @@ class SQLController extends GetxController {
     // Get a location using getDatabasesPath
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'demo.db');
-
     openAppDatabase(path: path);
   }
 
@@ -38,6 +37,7 @@ class SQLController extends GetxController {
       },
       onOpen: (Database db) {
         database = db;
+        selectData();
         debugPrint("Database is open!");
       },
     );
@@ -51,37 +51,42 @@ class SQLController extends GetxController {
     debugPrint("Deleted the database!");
   }
 
-  void selectData() async {
+  Future<void> selectData() async {
+    listData = [];
     var data = await database.query("demo");
     for (var i in data) {
       listData.add(DemoModel.fromJson(i));
     }
-    debugPrint("Data of length : ${listData.length}");
-    debugPrint("Data $data}");
     update();
   }
 
-  void insertData() async {
+  void insertData({
+    required String title,
+    String? description,
+    required String time,
+    required String favorite,
+    required String completed,
+  }) async {
     var insertData = await database.insert("demo", {
-      "title": "NIKE",
-      "description": "Popular fashion in the world",
-      "time": "12/16/2025",
-      "favorite": 1,
-      "completed": 0,
+      "title": title,
+      "description": description,
+      "time": time,
+      "favorite": int.parse(favorite),
+      "completed": int.parse(completed),
     });
     selectData();
     debugPrint("$insertData is Inserted!");
     update();
   }
 
-  void updateData() async {
+  void updateData({required int id}) async {
     var updateData = await database.update("demo", {
       "title": "PUMADDD",
       "description": "Popular fashion in the world",
       "time": "11/11/2025",
       "favorite": 1,
       "completed": 1,
-    }, where: "id = ${1}");
+    }, where: "id = $id");
     listData.elementAt(1);
     selectData();
     debugPrint("Updated data: $updateData");
