@@ -61,22 +61,6 @@ class HomeScreenSqlite extends StatelessWidget {
                       icon: Icon(Icons.edit, color: Colors.orange),
                     ),
                   );
-
-                  /*Card(
-                    child: Column(
-                      children: [
-                        Text(
-                          controller.listData[index].title,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text(
-                          controller.listData[index].description,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ],
-                    ),
-                 );
-                    */
                 },
               ),
             ),
