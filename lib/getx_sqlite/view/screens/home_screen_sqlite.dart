@@ -35,6 +35,14 @@ class HomeScreenSqlite extends StatelessWidget {
                   ),
                 ),
               ),
+              IconButton(
+                onPressed: controller.updateData,
+                icon: Icon(Icons.edit),
+              ),
+              IconButton(
+                onPressed: controller.deleteData,
+                icon: Icon(Icons.delete),
+              ),
             ],
           ),
         ],
@@ -54,10 +62,14 @@ class HomeScreenSqlite extends StatelessWidget {
                     product.description,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  trailing: Text(
-                    product.favorite.toString(),
+                  leading: Text(
+                    product.id.toString(),
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
+                  // trailing: IconButton(
+                  //   onPressed: controller.updateData,
+                  //   icon: Icon(Icons.edit),
+                  // ),
                 );
               },
             ),

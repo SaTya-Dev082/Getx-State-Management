@@ -56,6 +56,8 @@ class SQLController extends GetxController {
     for (var i in data) {
       listData.add(DemoModel.fromJson(i));
     }
+    debugPrint("Data of length : ${listData.length}");
+    debugPrint("Data $data}");
     update();
   }
 
@@ -72,6 +74,24 @@ class SQLController extends GetxController {
     update();
   }
 
-  void updateData() async {}
-  void deleteData() async {}
+  void updateData() async {
+    var updateData = await database.update("demo", {
+      "title": "PUMADDD",
+      "description": "Popular fashion in the world",
+      "time": "11/11/2025",
+      "favorite": 1,
+      "completed": 1,
+    }, where: "id = ${1}");
+    listData.elementAt(1);
+    selectData();
+    debugPrint("Updated data: $updateData");
+    update();
+  }
+
+  void deleteData() async {
+    var deleteData = await database.delete("demo", where: "id = ${1}");
+    debugPrint("Deleted $deleteData");
+    selectData();
+    update();
+  }
 }
