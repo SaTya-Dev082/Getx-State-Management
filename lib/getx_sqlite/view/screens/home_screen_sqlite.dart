@@ -1,47 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning_getx/getx_sqlite/controller/sqlite_controller.dart';
+import 'package:learning_getx/getx_sqlite/view/screens/insert_screen.dart';
 
 class HomeScreenSqlite extends StatelessWidget {
   HomeScreenSqlite({super.key});
 
-  final controller = Get.put(SQLController());
+  final SQLController controller1 = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("SQLite"),
         actions: [
           Row(
             children: [
               IconButton(
-                onPressed: controller.deleteAppDatabase,
+                onPressed: controller1.deleteAppDatabase,
                 icon: Icon(Icons.logout),
               ),
-              Center(
-                child: IconButton(
-                  onPressed: controller.insertData,
-                  icon: Icon(Icons.add, color: Colors.blue, size: 30),
-                ),
-              ),
-              Center(
-                child: IconButton(
-                  onPressed: controller.selectData,
-                  icon: Icon(
-                    Icons.remove_red_eye,
-                    color: Colors.blue,
-                    size: 30,
-                  ),
-                ),
-              ),
               IconButton(
-                onPressed: controller.updateData,
-                icon: Icon(Icons.edit),
-              ),
-              IconButton(
-                onPressed: controller.deleteData,
-                icon: Icon(Icons.delete),
+                onPressed: () {
+                  Get.to(InsertScreen());
+                },
+                icon: Icon(Icons.add),
               ),
             ],
           ),
@@ -49,29 +33,52 @@ class HomeScreenSqlite extends StatelessWidget {
       ),
       body: GetBuilder<SQLController>(
         builder:
-            (controller) => ListView.builder(
-              itemCount: controller.listData.length,
-              itemBuilder: (context, index) {
-                final product = controller.listData[index];
-                return ListTile(
-                  title: Text(
-                    product.title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    product.description,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  leading: Text(
-                    product.id.toString(),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  // trailing: IconButton(
-                  //   onPressed: controller.updateData,
-                  //   icon: Icon(Icons.edit),
-                  // ),
-                );
+            (controller) => RefreshIndicator(
+              onRefresh: () async {
+                await controller.selectData();
               },
+              child: ListView.builder(
+                itemCount: controller.listData.length,
+                itemBuilder: (context, index) {
+                  final product = controller.listData[index];
+                  return ListTile(
+                    leading: Text(
+                      product.id.toString(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    title: Text(
+                      product.title,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    subtitle: Text(
+                      product.description,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        controller.updateData(id: product.id);
+                      },
+                      icon: Icon(Icons.edit, color: Colors.orange),
+                    ),
+                  );
+
+                  /*Card(
+                    child: Column(
+                      children: [
+                        Text(
+                          controller.listData[index].title,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          controller.listData[index].description,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                 );
+                    */
+                },
+              ),
             ),
       ),
     );
