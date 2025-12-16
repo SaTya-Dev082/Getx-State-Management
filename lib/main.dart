@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:learning_getx/getx_sqlite/binding/home_sql_binding.dart';
+import 'package:learning_getx/getx_sqlite/controller/sqlite_controller.dart';
 import 'package:learning_getx/mvc_partern/binding/home_binding.dart';
+import 'package:learning_getx/mvc_partern/get_connects/view/home_product_view.dart';
 import 'package:learning_getx/mvc_partern/localizations/controllers/app_localization_controller.dart';
 import 'package:learning_getx/mvc_partern/localizations/controllers/local_service_controller.dart';
 import 'package:learning_getx/mvc_partern/localizations/views/chinese_screen.dart';
@@ -15,6 +18,7 @@ import 'package:learning_getx/routes/second_screen.dart';
 import 'package:learning_getx/routes/third_screen.dart';
 import 'package:learning_getx/test_route/home_screen.dart';
 
+import 'getx_sqlite/view/screens/home_screen_sqlite.dart';
 import 'mvc_partern/localizations/controllers/setting_language_controller.dart';
 import 'mvc_partern/localizations/views/change_language_view.dart';
 import 'mvc_partern/localizations/views/language_more_view.dart';
@@ -24,8 +28,10 @@ import 'mvc_partern/localizations/views/language_more_view.dart';
 // import 'package:learning_getx/routes/third_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  Get.put(SettingsController());
+  // Get.put(SettingsController());
+  // await SQLController().createDatabase();
   runApp(MyApp());
 }
 
@@ -34,14 +40,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(LocaleService.getLocale());
+    // print(LocaleService.getLocale());
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      /// Getx SQLite
+      initialRoute: "/",
+      initialBinding: HomeSQLBinding(),
+      getPages: [
+        GetPage(
+          name: "/",
+          page: () => HomeScreenSqlite(),
+          // binding: HomeSQLBinding(),
+        ),
+      ],
+
+      /// GetConnect
+      ///
+      // initialRoute: "/",
+      // getPages: [GetPage(name: "/", page: () => HomeProductView())],
+
+      /*
+      /// Localization
+      /*
       /// Localization two languages
-      /*locale:
+      locale:
           (box.read("lang") == null)
               ? const Locale("en")
               : Locale(box.read("lang")),
-      */
+
+       */
+      /// More Languages want to change
       translations: AppLocalizationController(),
       locale: Get.find<SettingsController>().currentLocale.value,
       fallbackLocale: const Locale("en", "US"),
@@ -73,7 +102,7 @@ class MyApp extends StatelessWidget {
           // transition: Transition.rightToLeft,
         ),
       ],
-
+        */
       // Dependency Injection
       /*
       initialRoute: '/',
@@ -99,7 +128,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.rightToLeft,
         ),
       ],*/
-      debugShowCheckedModeBanner: false,
+
       // home: const HomeScreen(), // Home Route
       // home: HomeScreenTest(),
       // initialBinding: HomeBinding(),
