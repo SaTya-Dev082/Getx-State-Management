@@ -6,26 +6,27 @@ import 'package:learning_getx/getx_sqlite/view/screens/insert_screen.dart';
 class HomeScreenSqlite extends StatelessWidget {
   HomeScreenSqlite({super.key});
 
-  final SQLController controller1 = Get.find();
+  final SQLController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text("SQLite"),
         actions: [
           Row(
             children: [
               IconButton(
-                onPressed: controller1.deleteAppDatabase,
+                onPressed: controller.deleteAppDatabase,
                 icon: Icon(Icons.logout),
               ),
-              IconButton(
-                onPressed: () {
-                  Get.to(InsertScreen());
-                },
-                icon: Icon(Icons.add),
+              Center(
+                child: IconButton(
+                  onPressed: () {
+                    Get.to(InsertScreen());
+                  },
+                  icon: Icon(Icons.add, color: Colors.blue, size: 30),
+                ),
               ),
             ],
           ),
@@ -33,36 +34,25 @@ class HomeScreenSqlite extends StatelessWidget {
       ),
       body: GetBuilder<SQLController>(
         builder:
-            (controller) => RefreshIndicator(
-              onRefresh: () async {
-                await controller.selectData();
+            (controller) => ListView.builder(
+              itemCount: controller.listData.length,
+              itemBuilder: (context, index) {
+                final product = controller.listData[index];
+                return ListTile(
+                  title: Text(
+                    product.title,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    product.description,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  leading: Text(
+                    product.id.toString(),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                );
               },
-              child: ListView.builder(
-                itemCount: controller.listData.length,
-                itemBuilder: (context, index) {
-                  final product = controller.listData[index];
-                  return ListTile(
-                    leading: Text(
-                      product.id.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    title: Text(
-                      product.title,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    subtitle: Text(
-                      product.description,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        controller.updateData(id: product.id);
-                      },
-                      icon: Icon(Icons.edit, color: Colors.orange),
-                    ),
-                  );
-                },
-              ),
             ),
       ),
     );
