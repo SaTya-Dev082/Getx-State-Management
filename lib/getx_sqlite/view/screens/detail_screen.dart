@@ -17,30 +17,37 @@ class DetailScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(title: Text(demoModel.title)),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                demoModel.title,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                demoModel.description,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                demoModel.time,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                demoModel.favorite.toString(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                demoModel.completed.toString(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Title                 :  ${demoModel.title}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Divider(),
+                Text(
+                  "Description     :  ${demoModel.description}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Divider(),
+                Text(
+                  "Time                :  ${demoModel.time}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Divider(),
+                Text(
+                  "Favorite           :   ${demoModel.favorite == 1 ? "True" : "False"}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Divider(),
+                Text(
+                  "Completed      :   ${demoModel.completed == 1 ? "True" : "False"}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
         );
       },
