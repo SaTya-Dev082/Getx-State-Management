@@ -79,13 +79,20 @@ class SQLController extends GetxController {
     update();
   }
 
-  void updateData({required int id}) async {
+  void updateData({
+    required int id,
+    required String title,
+    String? description,
+    required String time,
+    required String favorite,
+    required String completed,
+  }) async {
     var updateData = await database.update("demo", {
-      "title": "PUMADDD",
-      "description": "Popular fashion in the world",
-      "time": "11/11/2025",
-      "favorite": 1,
-      "completed": 1,
+      "title": title,
+      "description": description,
+      "time": time,
+      "favorite": int.parse(favorite),
+      "completed": int.parse(completed),
     }, where: "id = $id");
     listData.elementAt(1);
     selectData();
@@ -93,8 +100,8 @@ class SQLController extends GetxController {
     update();
   }
 
-  void deleteData() async {
-    var deleteData = await database.delete("demo", where: "id = ${1}");
+  void deleteData({required int id}) async {
+    var deleteData = await database.delete("demo", where: "id = $id");
     debugPrint("Deleted $deleteData");
     selectData();
     update();
