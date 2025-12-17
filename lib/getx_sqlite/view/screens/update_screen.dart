@@ -90,6 +90,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           SizedBox(height: 10),
                           TextFormField(
                             controller: favoriteController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "0/1",
                               hintText: "Favorite",
@@ -103,8 +104,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           ),
                           SizedBox(height: 10),
                           TextFormField(
-                            maxLines: 3,
                             controller: completedController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "0/1",
                               hintText: "Completed",
@@ -139,7 +140,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                                         favorite: favoriteController.text,
                                         completed: completedController.text,
                                       );
-                                      Get.back();
+                                      Get.offAll(HomeScreenSqlite());
                                       Get.snackbar(
                                         "Success",
                                         "Update data successfully",

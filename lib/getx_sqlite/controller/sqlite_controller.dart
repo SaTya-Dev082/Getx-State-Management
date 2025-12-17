@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class SQLController extends GetxController {
   late Database database;
   List<DemoModel> listData = [];
+  // bool updateTask=false;  // use this if use one library(insert/update)
 
   @override
   void onInit() {

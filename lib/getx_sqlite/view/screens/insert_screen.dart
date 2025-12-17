@@ -78,6 +78,7 @@ class _InsertScreenState extends State<InsertScreen> {
                           SizedBox(height: 10),
                           TextFormField(
                             controller: favoriteController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "0/1",
                               hintText: "Favorite",
@@ -91,8 +92,8 @@ class _InsertScreenState extends State<InsertScreen> {
                           ),
                           SizedBox(height: 10),
                           TextFormField(
-                            maxLines: 3,
                             controller: completedController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: "0/1",
                               hintText: "Completed",
